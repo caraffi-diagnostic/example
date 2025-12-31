@@ -81,9 +81,10 @@
     }
   ];
 
-  // ---------- Validation ----------
-  const expected = { "Cost": 4, "Operating Model": 8, "Brand & Experience": 6, "Data": 5 };
-  const errEl = document.getElementById("err");
+ // ---------- Validation ----------
+const expected = { "Cost": 4, "Operating Model": 8, "Brand & Experience": 6, "Data": 5 };
+// errEl is already defined at the top
+
 
   const mismatch = quadrants
     .map(q => ({ name: q.name, got: q.dims.length, want: expected[q.name] }))
