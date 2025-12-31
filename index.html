@@ -3,47 +3,52 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Diagnostic Overall</title>
+  <title>TA Diagnostic — Overall</title>
 
-  <!-- Make sure the filename in your repo is EXACTLY styles.css -->
-  <link rel="stylesheet" href="./styles.css" />
+  <!-- Cache-bust while you iterate. Bump v= number if you don't see changes -->
+  <link rel="stylesheet" href="./styles.css?v=10" />
 </head>
 
 <body>
-  <!-- If anything fails, we can show an error here -->
+  <!-- Error banner (script.js can write here) -->
   <div id="err" class="errorBanner" style="display:none;"></div>
 
-  <main class="page">
-    <section class="left">
-      <h1>Your TA Maturity</h1>
+  <!-- Centered "artboard" container -->
+  <div class="container">
+    <main class="page">
+      <!-- LEFT: content -->
+      <section class="left">
+        <h1>Your TA Maturity</h1>
 
-      <p class="sub">
-        Your TA function is up and running, with clear activity and investment behind it.
-        However, costs are higher than they need to be, governance is light, and data isn’t yet driving decisions.
-      </p>
+        <p class="sub">
+          Your TA function is up and running, with clear activity and investment behind it.
+          However, costs are higher than they need to be, governance is light, and data isn’t yet driving decisions.
+        </p>
 
-      <p class="sub">
-        With the right focus on efficiency and value, TA can move quickly from delivery to impact.
-      </p>
+        <p class="sub">
+          With the right focus on efficiency and value, TA can move quickly from delivery to impact.
+        </p>
 
-      <div class="actions">
-        <a class="btn secondary" href="#" role="button">Watch video overview</a>
-        <a class="btn primary" href="#" role="button">Explore exec summary</a>
-      </div>
-    </section>
+        <div class="actions">
+          <a class="btn secondary" href="#" role="button">Watch video overview</a>
+          <a class="btn primary" href="#" role="button">Explore exec summary</a>
+        </div>
+      </section>
 
-    <section class="right">
-      <div class="chartWrap">
-        <!-- DO NOT change this id; script.js targets #chart -->
-        <svg id="chart" viewBox="0 0 800 800" aria-label="TA maturity wheel"></svg>
-      </div>
-    </section>
-  </main>
+      <!-- RIGHT: visualization canvas -->
+      <section class="right">
+        <div class="vizCanvas">
+          <!-- Do not change id="chart" (script.js targets #chart) -->
+          <svg id="chart" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid meet" aria-label="TA maturity wheel"></svg>
+        </div>
+      </section>
+    </main>
+  </div>
 
-  <!-- Tooltip anchor used by script.js -->
+  <!-- Tooltip anchor used by your script -->
   <div id="tt" class="tooltip"></div>
 
-  <!-- D3 MUST load before script.js -->
+  <!-- D3 first, then your visualization script -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="./script.js"></script>
 </body>
