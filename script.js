@@ -81,9 +81,8 @@
     }
   ];
 
- // ---------- Validation ----------
+// ---------- Validation ----------
 const expected = { "Cost": 4, "Operating Model": 8, "Brand & Experience": 6, "Data": 5 };
-// errEl is already defined at the top
 
 
   const mismatch = quadrants
