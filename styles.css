@@ -48,6 +48,10 @@ body{
 /* =========================
    Left Column
 ========================= */
+
+.left{
+  align-self: center;
+   
 .left h1{
   font-size: 68px;
   line-height: 1.0;
