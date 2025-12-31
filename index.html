@@ -4,10 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Diagnostic Overall</title>
-  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Make sure the filename in your repo is EXACTLY styles.css -->
+  <link rel="stylesheet" href="./styles.css" />
 </head>
+
 <body>
-  <div id="err" class="errorBanner"></div>
+  <!-- If anything fails, we can show an error here -->
+  <div id="err" class="errorBanner" style="display:none;"></div>
 
   <main class="page">
     <section class="left">
@@ -23,23 +27,24 @@
       </p>
 
       <div class="actions">
-        <a class="btn secondary" href="#">Watch video overview</a>
-        <a class="btn primary" href="#">Explore exec summary</a>
+        <a class="btn secondary" href="#" role="button">Watch video overview</a>
+        <a class="btn primary" href="#" role="button">Explore exec summary</a>
       </div>
     </section>
 
     <section class="right">
       <div class="chartWrap">
-        <svg id="chart" viewBox="0 0 800 800"></svg>
+        <!-- DO NOT change this id; script.js targets #chart -->
+        <svg id="chart" viewBox="0 0 800 800" aria-label="TA maturity wheel"></svg>
       </div>
     </section>
   </main>
 
+  <!-- Tooltip anchor used by script.js -->
   <div id="tt" class="tooltip"></div>
 
-  <!-- IMPORTANT: D3 first, then your script -->
+  <!-- D3 MUST load before script.js -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="script.js"></script>
+  <script src="./script.js"></script>
 </body>
-
 </html>
