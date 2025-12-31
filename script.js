@@ -244,24 +244,34 @@ const expected = { "Cost": 4, "Operating Model": 8, "Brand & Experience": 6, "Da
       .attr("text-anchor", "middle")
       .text(d => d.name);
 
-    // ---- Centre circle + overall score (on top) ----
-    root.append("circle")
-      .attr("r", innerR - 10)
-      .attr("fill", "rgba(233,238,245,0.05)")
-      .attr("stroke", "rgba(233,238,245,0.10)");
+    // ---- Centre circle + overall score (big + bold) ----
+root.append("circle")
+  .attr("r", innerR - 10)
+  .attr("fill", "rgba(233,238,245,0.05)")
+  .attr("stroke", "rgba(233,238,245,0.12)")
+  .attr("stroke-width", 1);
 
-    root.append("text")
-      .attr("class", "scoreText")
-      .attr("text-anchor", "middle")
-      .attr("dominant-baseline", "central")
-      .attr("y", -8)
-      .text(overall.toFixed(1));
+root.append("text")
+  .attr("class", "centerText")
+  .attr("text-anchor", "middle")
+  .attr("dominant-baseline", "middle")
+  .attr("y", -6)
+  .attr("fill", "#fff")
+  .attr("font-size", 84)
+  .attr("font-weight", 800)
+  .text(overall.toFixed(1));
 
-    root.append("text")
-      .attr("class", "scoreSub")
-      .attr("text-anchor", "middle")
-      .attr("y", 40)
-      .text("OVERALL");
+root.append("text")
+  .attr("class", "centerSub")
+  .attr("text-anchor", "middle")
+  .attr("dominant-baseline", "middle")
+  .attr("y", 44)
+  .attr("fill", "rgba(255,255,255,0.72)")
+  .attr("font-size", 12)
+  .attr("font-weight", 600)
+  .attr("letter-spacing", 4)
+  .text("OVERALL");
+
 
     // Outer boundary ring
     root.append("circle")
