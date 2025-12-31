@@ -2,6 +2,27 @@
 
 /* global d3 */
 (function () {
+    const errEl = document.getElementById("err");
+  function showErr(msg) {
+    if (!errEl) return;
+    errEl.style.display = "block";
+    errEl.style.background = "rgba(255,0,0,0.15)";
+    errEl.style.border = "1px solid rgba(255,0,0,0.35)";
+    errEl.style.padding = "10px 12px";
+    errEl.style.margin = "12px";
+    errEl.style.borderRadius = "10px";
+    errEl.style.fontFamily = "system-ui, sans-serif";
+    errEl.textContent = msg;
+  }
+
+  // If D3 didn't load, tell us clearly
+  if (!window.d3) {
+    showErr("ERROR: D3 did not load. The CDN may be blocked. Try another network, disable blockers, or host d3 locally.");
+    return;
+  }
+
+  console.log("script.js loaded, d3 version:", window.d3.version);
+
   // Brandbook gradient pairs (secondary -> primary) — exact hexes from your screenshot
   const PALETTE = {
     cost:       { secondary: "#5599e9", primary: "#00ddff" }, // blue
