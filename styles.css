@@ -8,13 +8,8 @@
   --text: #fff;
   --muted: rgba(255,255,255,0.78);
 
-  /* Right-side canvas */
-  --canvas-bg: rgba(255,255,255,0.035);
-  --canvas-border: rgba(255,255,255,0.09);
-
-  /* Sizing */
-  --artboard: 1320px;     /* overall centered width */
-  --gap: 84px;            /* space between columns */
+  --artboard: 1320px;  /* centered page width */
+  --gutter: 84px;      /* space between left and right */
 }
 
 body{
@@ -24,34 +19,32 @@ body{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
 }
 
-/* =========================
-   Centered Container
-========================= */
+/* Center the whole composition */
 .container{
   max-width: var(--artboard);
   margin: 0 auto;
-  padding: 0 28px; /* keeps it nice on smaller screens */
+  padding: 0 28px;
 }
 
 /* =========================
-   2-column Layout
+   2-column layout
 ========================= */
 .page{
   min-height: 100vh;
   display: grid;
   grid-template-columns: 520px 1fr;
-  column-gap: var(--gap);
-  align-items: start;
-  padding: 70px 0; /* vertical spacing only; horizontal handled by container */
+  column-gap: var(--gutter);
+  align-items: stretch;        /* allow left to self-center */
+  padding: 70px 0;             /* vertical spacing only */
 }
 
 /* =========================
-   Left Column
+   Left column
 ========================= */
-
 .left{
-  align-self: center;
-   
+  align-self: center;          /* vertical center the text column */
+}
+
 .left h1{
   font-size: 68px;
   line-height: 1.0;
@@ -106,38 +99,32 @@ body{
 }
 
 /* =========================
-   Right Column / Visualization Canvas
-   (XD-style framed box on black)
+   Right column (viz)
+   No background panel, just the chart
 ========================= */
 .right{
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;   /* vertically align chart with left content */
 }
 
-/* RIGHT: visualization holder (no background/frame now) */
 .vizCanvas{
   width: 100%;
-  max-width: 760px;
+  max-width: 820px;      /* adjust to make chart bigger/smaller */
   aspect-ratio: 1 / 1;
-
-  /* remove the "card" look */
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-
-  /* keep the chart centered */
   display: flex;
   align-items: center;
   justify-content: center;
+
+  background: transparent;
+  border: none;
+  box-shadow: none;
 
   padding: 0;
   overflow: visible;
 }
 
-
-/* Make SVG scale to the canvas */
+/* SVG scales to container */
 #chart{
   width: 100%;
   height: auto;
@@ -145,39 +132,44 @@ body{
   overflow: visible;
 }
 
-/* Prevent blue selection highlight when dragging on the SVG */
+/* Prevent blue selection highlight on SVG text */
 #chart, #chart *{
   user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
 }
 
-/* Force all SVG labels to white */
+/* Force all SVG text to be visible + white */
 #chart text{
   fill: rgba(255,255,255,0.92) !important;
-}
-#chart text.label{
-  fill: rgba(255,255,255,0.95) !important;
-}
-#chart text.score{
-  fill: rgba(255,255,255,0.80) !important;
-}
-#chart .centerText{
-  fill: #fff !important;
-}
-#chart .centerSub{
-  fill: rgba(255,255,255,0.70) !important;
+  opacity: 1 !important;
 }
 
-/* =========================
-   Tooltip / Error Banner
-========================= */
+/* If your script uses these class names, make them look great */
+#chart text.label{ fill: rgba(255,255,255,0.98) !important; font-weight: 600; }
+#chart text.score{ fill: rgba(255,255,255,0.82) !important; }
+
+#chart .centerText{
+  fill: #fff !important;
+  font-size: 84px !important;
+  font-weight: 800 !important;
+  opacity: 1 !important;
+}
+
+#chart .centerSub{
+  fill: rgba(255,255,255,0.70) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 4px !important;
+  opacity: 1 !important;
+}
+
+/* Tooltip / error banner (safe defaults) */
 .tooltip{
   position: fixed;
   pointer-events: none;
   z-index: 9999;
 }
-
 .errorBanner{
   position: fixed;
   top: 16px;
@@ -195,12 +187,16 @@ body{
    Responsive
 ========================= */
 @media (max-width: 1100px){
-  :root{ --gap: 28px; }
+  :root{ --gutter: 28px; }
 
   .page{
     grid-template-columns: 1fr;
     padding: 34px 0;
     row-gap: 28px;
+  }
+
+  .left{
+    align-self: start;
   }
 
   .left h1{
@@ -209,67 +205,11 @@ body{
 
   .right{
     justify-content: center;
+    align-items: start;
   }
 
   .vizCanvas{
-    max-width: 860px;
+    max-width: 900px;
     width: 100%;
   }
-}
-/* =========================
-   OVERRIDES: bring back white labels + bigger left typography
-   (paste at the bottom of styles.css)
-========================= */
-
-/* Make ALL chart text white again (labels, scores, center text) */
-#chart text {
-  fill: rgba(255,255,255,0.92) !important;
-  opacity: 1 !important;
-}
-
-#chart text.label {
-  fill: rgba(255,255,255,0.98) !important;
-  font-weight: 600;
-}
-
-#chart text.score {
-  fill: rgba(255,255,255,0.85) !important;
-}
-
-/* Center score styling */
-#chart .centerText,
-#chart text.centerText {
-  fill: #fff !important;
-  font-size: 84px !important;
-  font-weight: 800 !important;
-  opacity: 1 !important;
-}
-
-#chart .centerSub,
-#chart text.centerSub {
-  fill: rgba(255,255,255,0.70) !important;
-  letter-spacing: 4px;
-  font-weight: 600;
-  opacity: 1 !important;
-}
-
-/* Stop that “blue highlight” when dragging on SVG text */
-#chart, #chart * {
-  user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-
-/* Bring back the left title sizing */
-.left h1 {
-  font-size: 68px !important;
-  line-height: 1.0 !important;
-  margin: 0 0 18px !important;
-  letter-spacing: -0.02em !important;
-}
-
-.left .sub {
-  font-size: 14px !important;
-  line-height: 1.75 !important;
-  max-width: 48ch !important;
 }
