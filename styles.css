@@ -89,4 +89,9 @@ body {
   .left h1 {
     font-size: 42px;
   }
+
+  /* Common class names used by D3 chart code */
+#chart .centerText { fill: #ffffff !important; }
+#chart .centerSub { fill: rgba(255,255,255,0.7) !important; }
+
 }
