@@ -1,105 +1,90 @@
-/* Pure black background + high-contrast chart styling */
-:root{
-  --bg: #000000;
-  --ink: rgba(233,238,245,0.92);
-  --muted: rgba(233,238,245,0.65);
-  --grid: rgba(233,238,245,0.10);
-  --axis: rgba(233,238,245,0.16);
-}
-
-html, body {
+/* Page layout */
+body {
   margin: 0;
-  height: 100%;
-  background: var(--bg);
-  color: var(--ink);
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  background: #000;
+  color: #fff;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
 }
 
-.wrap{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  min-height:100vh;
+.page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 48px;
+  align-items: center;
+  padding: 56px 56px;
 }
 
-#chart{
-  width:min(92vw, 860px);
-  height:auto;
-}
-
-/* Grid + axis */
-.grid{
-  fill:none;
-  stroke: var(--grid);
-  stroke-width: 1;
-}
-
-.axis{
-  stroke: var(--axis);
-  stroke-width: 1;
-}
-
-/* Center score */
-.scoreText{
-  fill: var(--ink);
+/* Left column */
+.left h1 {
   font-size: 56px;
-  font-weight: 700;
+  line-height: 1.05;
+  margin: 0 0 18px;
+  letter-spacing: -0.02em;
+}
+
+.sub {
+  max-width: 46ch;
+  color: rgba(255,255,255,0.78);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 14px;
+}
+
+.actions {
+  margin-top: 28px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 12px;
   letter-spacing: 0.02em;
 }
 
-.scoreSub{
-  fill: var(--muted);
-  font-size: 12px;
-  letter-spacing: 0.22em;
+.btn.secondary {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #fff;
 }
 
-/* Numbers around ring */
-.value{
-  fill: rgba(233,238,245,0.80);
-  font-size: 10px;
-  letter-spacing: 0.06em;
+.btn.primary {
+  background: #fff;
+  color: #000;
+  border: 1px solid rgba(255,255,255,0.35);
 }
 
-/* Dimension labels */
-.dimLabel{
-  fill: rgba(233,238,245,0.88);
-  font-size: 11px;
-  letter-spacing: 0.02em;
+/* Right column (chart) */
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Inner ring curved labels */
-.quadTitle{
-  fill: rgba(233,238,245,0.92);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
+.chartWrap {
+  width: min(860px, 100%);
 }
 
-/* Tooltip (if you have #tt) */
-.tooltip{
-  position: fixed;
-  pointer-events: none;
-  opacity: 0;
-  transform: translate(10px, 10px);
-  background: rgba(10,10,10,0.9);
-  border: 1px solid rgba(233,238,245,0.14);
-  color: rgba(233,238,245,0.92);
-  padding: 10px 12px;
-  border-radius: 12px;
-  font-size: 12px;
-  line-height: 1.25;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.55);
+#chart {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-/* Subtle glow for colored segments (helps on pure black) */
-.seg{
-  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.55));
-}
+/* Responsive: stack */
+@media (max-width: 980px) {
+  .page {
+    grid-template-columns: 1fr;
+    padding: 28px 18px;
+    gap: 28px;
+  }
 
-/* Optional: watermark */
-.watermark{
-  fill: rgba(233,238,245,0.40);
-  font-size: 11px;
-  letter-spacing: 0.18em;
+  .left h1 {
+    font-size: 42px;
+  }
 }
