@@ -111,23 +111,27 @@ body{
   align-items: flex-start;
 }
 
-/* This is the "box" where the viz lives */
+/* RIGHT: visualization holder (no background/frame now) */
 .vizCanvas{
   width: 100%;
-  max-width: 760px;     /* controls how wide the box feels */
-  aspect-ratio: 1 / 1;  /* square like your XD frame */
-  background: var(--canvas-bg);
-  border: 1px solid var(--canvas-border);
-  border-radius: 18px;
+  max-width: 760px;
+  aspect-ratio: 1 / 1;
 
+  /* remove the "card" look */
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+
+  /* keep the chart centered */
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: 14px;
+  padding: 0;
   overflow: visible;
-  box-shadow: 0 18px 70px rgba(0,0,0,0.55);
 }
+
 
 /* Make SVG scale to the canvas */
 #chart{
