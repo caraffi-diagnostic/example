@@ -181,13 +181,6 @@
       makeLinearGrad(`grad-q${i}`, q.grad.secondary, q.grad.primary);
     });
 
-        // Watermark
-    svg.append("text")
-      .attr("class", "watermark")
-      .attr("x", 24)
-      .attr("y", 34)
-      .text("CATEGORY LINE + LABEL UNDER");
-
     // ---- Category line arcs + curved labels underneath ----
     const ringData = quadrants.map((q, i) => ({
       name: q.name,
